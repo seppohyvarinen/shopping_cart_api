@@ -1,13 +1,15 @@
 const express = require("express");
 
+const connections = require("./database");
+
 let shoppingCart = express.Router();
 
 shoppingCart.get("/", async (req, res) => {
   try {
-    let tervis = [{ message: "tervis kuis pyyhkis", message2: "fine thanks" }];
-    let jsoned = JSON.stringify(tervis);
+    let list = connections.getAll();
+    let jsonedList = JSON.stringify(list);
     res.statusCode = 200;
-    res.send(jsoned);
+    res.send(jsonedList);
   } catch (error) {
     res.statusCode = 404;
     res.send(error);
