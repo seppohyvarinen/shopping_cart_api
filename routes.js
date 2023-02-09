@@ -6,7 +6,7 @@ let shoppingCart = express.Router();
 
 shoppingCart.get("/", async (req, res) => {
   try {
-    let list = connections.getAll();
+    let list = await connections.getAll();
     let jsonedList = JSON.stringify(list);
     res.statusCode = 200;
     res.send(jsonedList);
